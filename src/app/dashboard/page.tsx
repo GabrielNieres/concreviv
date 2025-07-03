@@ -190,7 +190,7 @@ export default function DashboardPage() {
                         </div>
                       </div>
                       <div className="text-xs text-[#034f1d] text-right">
-                        {new Date(lead.created_at).toLocaleDateString()}
+                        {lead.created_at ? new Date(lead.created_at).toLocaleDateString() : '-'}
                       </div>
                     </div>
                   </div>
