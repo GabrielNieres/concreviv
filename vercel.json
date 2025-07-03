@@ -1,0 +1,6 @@
+{
+    "buildCommand": "next build",
+    "env": {
+      "DISABLE_ESLINT_PLUGIN": "true"
+    }
+  }
