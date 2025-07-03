@@ -1,3 +1,5 @@
+import { supabase } from '../supabaseClient';
+
 export interface Lead {
   id?: string;
   user_id?: string;
@@ -14,4 +16,13 @@ export interface Lead {
   comment?: string;
   lead_type?: string;
   created_at?: string;
-} 
+}
+
+export const createLead = async (lead: Omit<Lead, 'id' | 'created_at'>) => {
+  const { data, error } = await supabase
+    .from('leads')
+    .insert([lead])
+    .select()
+    .single();
+  return { data, error };
+}; 

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../../supabaseClient';
-import { getProfile, getUserPreference, getLeads } from '../../lib/database';
+import { getProfile, getUserPreference, getLeads, Lead } from '../../lib/database';
 
 interface Profile {
   id: string;
@@ -21,19 +21,6 @@ interface UserPreference {
   material: string;
   created_at: string;
   updated_at: string;
-}
-
-interface Lead {
-  id: string;
-  user_id?: string;
-  name: string;
-  email: string;
-  phone: string;
-  construction_type: string;
-  style: string;
-  surface: number;
-  material: string;
-  created_at: string;
 }
 
 export default function DashboardPage() {
@@ -197,10 +184,9 @@ export default function DashboardPage() {
                         <h3 className="font-semibold text-[#034f1d]">{lead.name}</h3>
                         <p className="text-[#034f1d]">{lead.email} • {lead.phone}</p>
                         <div className="mt-2 grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
-                          <div><span className="font-medium">Tipo:</span> {lead.construction_type}</div>
-                          <div><span className="font-medium">Estilo:</span> {lead.style}</div>
-                          <div><span className="font-medium">Superficie:</span> {lead.surface} m²</div>
-                          <div><span className="font-medium">Material:</span> {lead.material}</div>
+                          <div><span className="font-medium">Zona:</span> {lead.zone || '-'}</div>
+                          <div><span className="font-medium">Comentario:</span> {lead.comment || '-'}</div>
+                          <div><span className="font-medium">Tipo de lead:</span> {lead.lead_type || '-'}</div>
                         </div>
                       </div>
                       <div className="text-xs text-[#034f1d] text-right">
