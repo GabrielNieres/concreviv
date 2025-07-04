@@ -36,12 +36,12 @@ function Carrusel() {
   // const next = () => setCurrent((prev) => (prev + 1) % length);
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto mb-12 mt-4">
-      <div className="overflow-hidden rounded-xl shadow-lg">
+    <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mb-12 mt-4 overflow-x-hidden">
+      <div className="overflow-hidden rounded-none shadow-lg w-full h-[500px] md:h-[600px]">
         {carouselImages.map((img, idx) => (
           <div
             key={img.src}
-            className={`transition-opacity duration-700 ease-in-out absolute w-full h-[220px] md:h-[340px] ${idx === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            className={`transition-opacity duration-700 ease-in-out absolute w-full h-[500px] md:h-[600px] ${idx === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
             aria-hidden={idx !== current}
           >
             <Image
@@ -49,13 +49,13 @@ function Carrusel() {
               alt={img.alt}
               fill
               style={{ objectFit: 'cover' }}
-              sizes="(max-width: 768px) 100vw, 700px"
+              sizes="100vw"
               priority={idx === 0}
             />
           </div>
         ))}
-        <div className="relative w-full h-[220px] md:h-[340px]"></div>
-        </div>
+        <div className="relative w-full h-[500px] md:h-[600px]"></div>
+      </div>
       {/* Dots */}
       <div className="flex justify-center gap-2 mt-3">
         {carouselImages.map((_, idx) => (

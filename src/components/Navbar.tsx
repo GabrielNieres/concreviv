@@ -24,13 +24,14 @@ export default function Navbar() {
 
   const navItems = [
     { name: "Inicio", href: "/", icon: <FaHome /> },
+    { name: "Conocer el sistema", href: "/conocer-el-sistema", icon: <FaKey /> },
     // { name: "Diseño", href: "/design-customization", icon: <FaPaintBrush /> },
     { name: "Modelos", href: "/pre-established-models", icon: <FaHome /> },
     // { name: "Calculadora de costos", href: "/cost-calculator", icon: <FaCalculator /> },
-    { name: "Agendar consulta", href: "/designer-collaboration", icon: <FaCalendarAlt /> },
     { name: "Llave en mano", href: "/turnkey", icon: <FaKey /> },
     { name: "Precios", href: "/pricing", icon: <FaDollarSign /> },
     { name: "Quiénes somos", href: "/quienes-somos", icon: <FaUsers /> },
+    { name: "Agendar consulta", href: "/designer-collaboration", icon: <FaCalendarAlt /> },
   ];
   if (user) {
     navItems.push({ name: "Panel", href: "/dashboard", icon: <FaTachometerAlt /> });
@@ -38,7 +39,7 @@ export default function Navbar() {
 
   return (
     <nav className="w-full px-0 py-2 relative z-50">
-      <div className="max-w-7xl mx-auto rounded-2xl shadow-xl bg-white/60 backdrop-blur-md border border-[#b6e7b9] flex flex-row items-center justify-between px-2 md:px-8 py-2 mt-2">
+      <div className="w-full rounded-2xl shadow-xl bg-white/60 backdrop-blur-md border border-[#b6e7b9] flex flex-row items-center justify-between px-2 md:px-8 py-2 mt-2">
         {/* Logo a la izquierda */}
         <Link href="/" className="focus:outline focus:outline-2 focus:outline-[#65b305]" aria-label="Ir a la página principal">
           <Image
@@ -46,7 +47,7 @@ export default function Navbar() {
             alt="Logo de Concreviv"
             width={112}
             height={112}
-            className="rounded shadow-md object-contain"
+            className="rounded object-contain"
             priority
           />
         </Link>
@@ -76,7 +77,7 @@ export default function Navbar() {
         </div>
       </div>
       {/* Menú horizontal en desktop */}
-      <ul className="hidden md:flex flex-wrap gap-4 text-[16px] font-bold mt-4 justify-center rounded-2xl bg-white/60 backdrop-blur-md shadow-lg border border-[#b6e7b9] px-6 py-2 mx-auto max-w-5xl">
+      <ul className="hidden md:flex flex-wrap gap-4 text-[16px] font-bold mt-4 justify-center rounded-2xl bg-white/60 backdrop-blur-md shadow-lg border border-[#b6e7b9] px-6 py-2 w-full mx-0">
         {navItems.map((item) => (
           <li key={item.href}>
             <Link

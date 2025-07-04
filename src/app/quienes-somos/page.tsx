@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import LeadForm from "../../components/LeadForm";
 
 const obras = [
   {
@@ -127,8 +128,31 @@ export default function QuienesSomosPage() {
       <section className="w-full max-w-4xl bg-white rounded-2xl shadow p-8 mb-10 flex flex-col items-center">
         <h3 className="text-2xl font-bold text-[#034f1d] mb-4 text-center">Contacto directo</h3>
         <p className="text-[#034f1d] mb-2">¿Querés saber más sobre nuestro equipo o proyectos?</p>
-        <a href="mailto:info@concreviv.com" className="px-8 py-3 bg-gradient-to-r from-[#65b305] to-[#034f1d] text-white rounded-xl font-bold shadow-lg hover:from-[#034f1d] hover:to-[#65b305] transition text-lg">Escribinos</a>
+        <ContactLeadModal />
       </section>
     </main>
+  );
+}
+
+function ContactLeadModal() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => setOpen(true)}
+        className="px-8 py-3 bg-gradient-to-r from-[#65b305] to-[#034f1d] text-white rounded-xl font-bold shadow-lg hover:from-[#034f1d] hover:to-[#65b305] transition text-lg mb-2"
+      >
+        Escribinos
+      </button>
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white rounded-2xl shadow-lg p-8 max-w-lg w-full relative">
+            <button onClick={() => setOpen(false)} className="absolute top-2 right-2 text-2xl text-[#034f1d]">×</button>
+            <h4 className="text-xl font-bold text-[#034f1d] mb-4 text-center">Contacto directo</h4>
+            <LeadForm leadType="quienes-somos" />
+          </div>
+        </div>
+      )}
+    </>
   );
 } 
