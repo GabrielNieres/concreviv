@@ -55,7 +55,7 @@ function Carrusel() {
           </div>
         ))}
         <div className="relative w-full h-[220px] md:h-[340px]"></div>
-      </div>
+        </div>
       {/* Dots */}
       <div className="flex justify-center gap-2 mt-3">
         {carouselImages.map((_, idx) => (
@@ -92,7 +92,7 @@ export default function Home() {
         <div className="flex flex-col md:flex-row gap-8 w-full justify-center">
           <div className="bg-[#e1f7e3] rounded-lg p-8 shadow flex flex-col items-center" style={{ maxWidth: '480px', width: '100%' }}>
             <Link href="/pre-established-models" className="w-full" aria-label="Ver modelos">
-              <Image
+          <Image
                 src="/render1.jpg"
                 alt="Render de modelo de vivienda 1"
                 width={426}
@@ -122,7 +122,7 @@ export default function Home() {
         <div className="flex flex-col md:flex-row gap-8 w-full justify-center">
           <div className="bg-[#e1f7e3] rounded-lg p-8 shadow flex flex-col items-center" style={{ maxWidth: '480px', width: '100%' }}>
             <Link href="/turnkey" className="w-full" aria-label="Ir a Llave en mano">
-              <Image
+          <Image
                 src="/render3a.jpg"
                 alt="Llave en mano"
                 width={426}
@@ -136,7 +136,7 @@ export default function Home() {
           </div>
           <div className="bg-[#e1f7e3] rounded-lg p-8 shadow flex flex-col items-center" style={{ maxWidth: '480px', width: '100%' }}>
             <Link href="/designer-collaboration" className="w-full" aria-label="Agendar consulta">
-              <Image
+          <Image
                 src="/agenda.png"
                 alt="Agenda para agendar consulta"
                 width={426}

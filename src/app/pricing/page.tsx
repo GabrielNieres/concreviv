@@ -124,6 +124,10 @@ export default function PricingPage() {
   const subtotal = surface * selectedPricing.pricePerSqm;
   const grandTotal = subtotal + totalAdditionalCosts;
 
+  const whatsappMessage = encodeURIComponent(
+    `Hola, quiero consultar por el paquete ${selectedPricing.name} para una casa de ${surface} m².\nTotal estimado: $${grandTotal.toLocaleString('es-AR')}.\n¿Me pueden asesorar?`
+  );
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -209,15 +213,15 @@ export default function PricingPage() {
 
         <h2 className="text-2xl font-bold mb-6 text-[#034f1d]">
           Detalle de costos - {selectedPricing.name}
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div>
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
             <h3 className="text-lg font-semibold mb-4 text-[#034f1d]">Precio base</h3>
-            <div className="space-y-3">
+              <div className="space-y-3">
               <div className="flex justify-between items-center p-3 bg-[#e1f7e3] rounded-lg">
-                <span>Precio por m²</span>
+                  <span>Precio por m²</span>
                 <span className="font-semibold">${selectedPricing.pricePerSqm.toLocaleString('es-AR')}</span>
-              </div>
+                </div>
               <div className="flex items-center gap-4 mb-6">
                 <span className="font-semibold text-[#034f1d]">Superficie (m²):</span>
                 <input
@@ -230,19 +234,19 @@ export default function PricingPage() {
                   aria-label="Metros cuadrados"
                 />
                 <span className="text-2xl font-bold text-[#65b305]">m²</span>
-              </div>
+                </div>
               <div className="flex justify-between items-center p-3 bg-[#e1f7e3] rounded-lg border border-[#65b305]/30">
-                <span className="font-semibold">Subtotal</span>
+                  <span className="font-semibold">Subtotal</span>
                 <span className="font-bold text-[#65b305]">${subtotal.toLocaleString('es-AR')}</span>
               </div>
             </div>
           </div>
-          <div>
+            <div>
             <h3 className="text-lg font-semibold mb-4 text-[#034f1d]">Costos adicionales</h3>
-            <div className="space-y-3">
-              {selectedPricing.additionalCosts.map((cost, index) => (
+              <div className="space-y-3">
+                {selectedPricing.additionalCosts.map((cost, index) => (
                 <div key={index} className="flex justify-between items-center p-3 bg-[#e1f7e3] rounded-lg">
-                  <span>{cost.item}</span>
+                    <span>{cost.item}</span>
                   <span className="font-semibold flex items-center gap-1">
                     ${cost.cost.toLocaleString('es-AR')}
                     <span className="relative group cursor-pointer">
@@ -269,9 +273,9 @@ export default function PricingPage() {
               <p className="text-xs text-gray-500 mt-2">
                 * Los costos adicionales son estimativos y pueden variar según el tipo de construcción, ubicación, permisos y otros factores.
               </p>
+              </div>
             </div>
           </div>
-        </div>
 
         <div className="mt-8 p-6 bg-[#e1f7e3] rounded-xl border border-[#65b305]/30">
           <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
@@ -281,7 +285,7 @@ export default function PricingPage() {
             </div>
             <div className="flex items-center gap-3 mt-4 md:mt-0">
               <a
-                href="https://wa.me/5491133344455"
+                href={`https://wa.me/5491133344455?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Contactar por WhatsApp"
@@ -315,7 +319,7 @@ export default function PricingPage() {
             <div className="mt-6 space-y-4">
               {CONSTRUCTION_COSTS.map((cost, index) => (
                 <div key={index} className="flex justify-between items-center p-3 bg-[#e1f7e3] rounded-lg">
-                  <span>{cost.item}</span>
+                    <span>{cost.item}</span>
                   <span className="font-semibold">${cost.cost.toLocaleString('es-AR')}</span>
                 </div>
               ))}

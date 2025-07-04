@@ -37,18 +37,21 @@ export default function RootLayout({
               <h3 className="font-bold mb-2 text-[#034f1d]">Redes sociales</h3>
               <div className="flex justify-center gap-4 text-2xl">
                 <a href="https://www.instagram.com/concreviv.ar" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#65b305] transition-colors"><FaInstagram /></a>
-                <a href="https://www.facebook.com/concreviv.ar" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[#65b305] transition-colors"><FaFacebook /></a>
-                <a href="https://wa.me/5491133344455" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="hover:text-[#65b305] transition-colors"><FaWhatsapp /></a>
+                <a href="https://www.facebook.com/Concreviv" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[#65b305] transition-colors"><FaFacebook /></a>
+                <a href="https://wa.me/5492236897840" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="hover:text-[#65b305] transition-colors"><FaWhatsapp /></a>
               </div>
               <div className="mt-2 text-[14px]">
-                @concreviv.ar
+                @concreviv
               </div>
             </div>
             {/* Dirección */}
             <div>
               <h3 className="font-bold mb-2 text-[#034f1d]">Dirección</h3>
-              <p className="text-[15px]">Av. del Futuro 4567<br/>Barrio Innovador, CABA<br/>Buenos Aires, Argentina</p>
-              <p className="text-[14px] mt-2">Lunes a viernes de 9 a 18 hs</p>
+              <p className="text-[15px]">Formosa 3133<br/>Mar del Plata, Argentina</p>
+              <p className="text-[14px] mt-2">Siempre abierto</p>
+              <p className="text-[15px] mt-2">0223 689-7840</p>
+              <a href="tel:+5492236897840" className="text-[#65b305] underline text-[15px] block">+54 9 223 689-7840</a>
+              <a href="https://concreviv.com.ar" target="_blank" rel="noopener noreferrer" className="text-[#65b305] underline text-[15px] block">concreviv.com.ar</a>
             </div>
             {/* Quiénes somos */}
             <div>

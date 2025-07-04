@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
 import AuthWidget from "./AuthWidget";
 import Image from "next/image";
-import { FaPaintBrush, FaHome, FaCalculator, FaCalendarAlt, FaKey, FaDollarSign, FaTachometerAlt } from "react-icons/fa";
+import { FaPaintBrush, FaHome, FaCalculator, FaCalendarAlt, FaKey, FaDollarSign, FaTachometerAlt, FaUsers } from "react-icons/fa";
 
 export default function Navbar() {
   const [user, setUser] = useState<any>(null);
@@ -30,6 +30,7 @@ export default function Navbar() {
     { name: "Agendar consulta", href: "/designer-collaboration", icon: <FaCalendarAlt /> },
     { name: "Llave en mano", href: "/turnkey", icon: <FaKey /> },
     { name: "Precios", href: "/pricing", icon: <FaDollarSign /> },
+    { name: "Quiénes somos", href: "/quienes-somos", icon: <FaUsers /> },
   ];
   if (user) {
     navItems.push({ name: "Panel", href: "/dashboard", icon: <FaTachometerAlt /> });

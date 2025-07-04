@@ -40,7 +40,7 @@ export default function DashboardPage() {
       } catch (error) {
         console.error('Error loading leads:', error);
       } finally {
-        setLoading(false);
+      setLoading(false);
       }
     };
     loadLeads();

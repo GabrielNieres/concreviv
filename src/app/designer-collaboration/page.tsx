@@ -123,15 +123,15 @@ export default function DesignerCollaborationPage() {
           </div>
           <div>
             <label className="block mb-1 font-medium text-[#034f1d]" htmlFor="email">Correo electrónico</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              value={form.email}
-              onChange={handleChange}
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                value={form.email}
+                onChange={handleChange}
               className="w-full border border-[#e1f7e3] rounded-lg p-2 focus:ring-2 focus:ring-[#65b305] focus:border-[#65b305] text-[#034f1d] bg-[#F9FAFB]"
-            />
+              />
           </div>
           <div>
             <label className="block mb-1 font-medium text-[#034f1d]" htmlFor="phone">Teléfono</label>
@@ -167,7 +167,7 @@ export default function DesignerCollaborationPage() {
               id="comment"
               name="comment"
               value={form.comment}
-              onChange={handleChange}
+                onChange={handleChange}
               rows={3}
               className="w-full border border-[#e1f7e3] rounded-lg p-2 focus:ring-2 focus:ring-[#65b305] focus:border-[#65b305] text-[#034f1d] bg-[#F9FAFB]"
               placeholder="Agregá detalles, dudas o comentarios sobre tu proyecto..."
@@ -181,13 +181,13 @@ export default function DesignerCollaborationPage() {
               Enviar consulta
             </button>
           </div>
-          {submitted && (
+        {submitted && (
             <div className="mt-6 text-center">
               <span className="inline-block bg-[#e1f7e3] text-[#034f1d] px-4 py-2 rounded-lg font-medium shadow border border-[#65b305]">
                 ¡Consulta enviada! Pronto nos pondremos en contacto con vos.
               </span>
-            </div>
-          )}
+          </div>
+        )}
         </form>
       </section>
     </main>
