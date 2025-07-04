@@ -53,14 +53,16 @@ export default function Navbar() {
         </Link>
         {/* Imagen concreviv.png centrada */}
         <div className="flex-1 flex justify-center">
-          <Image
-            src="/concreviv.png"
-            alt="Concreviv"
-            width={224}
-            height={112}
-            className="object-contain"
-            priority={false}
-          />
+          <Link href="/" aria-label="Ir a la página principal">
+            <Image
+              src="/concreviv.png"
+              alt="Concreviv"
+              width={224}
+              height={112}
+              className="object-contain cursor-pointer"
+              priority={false}
+            />
+          </Link>
         </div>
         {/* Botón login/hamburguesa a la derecha */}
         <div className="flex flex-row items-center gap-2">

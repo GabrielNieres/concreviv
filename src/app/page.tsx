@@ -90,64 +90,94 @@ export default function Home() {
       {/* PLACEHOLDER FOR FUTURE COMPONENTS */}
       <section className="w-full max-w-5xl mx-auto flex flex-col items-center gap-8 py-12">
         <div className="flex flex-col md:flex-row gap-8 w-full justify-center">
-          <div className="bg-[#e1f7e3] rounded-lg p-8 shadow flex flex-col items-center" style={{ maxWidth: '480px', width: '100%' }}>
-            <Link href="/pre-established-models" className="w-full" aria-label="Ver modelos">
-          <Image
+          <Link href="/pre-established-models" className="w-full" aria-label="Ver modelos">
+            <div className="bg-[#e1f7e3] rounded-lg p-8 shadow flex flex-col items-center transition hover:shadow-xl active:scale-[0.98] cursor-pointer" style={{ maxWidth: '480px', width: '100%' }}>
+              <Image
                 src="/render1.jpg"
                 alt="Render de modelo de vivienda 1"
                 width={426}
                 height={240}
-                className="rounded-lg shadow mb-6 object-contain w-full h-auto max-h-60 hover:scale-105 transition-transform duration-200 cursor-pointer"
+                className="rounded-lg shadow mb-6 object-contain w-full h-auto max-h-60 hover:scale-105 transition-transform duration-200"
                 style={{ background: '#fff' }}
               />
-            </Link>
-            <span className="text-[#65b305] text-[32px] font-bold mb-3">Modelos</span>
-            <p className="text-[18px] text-[#034f1d] mb-2">Explorá y elegí entre nuestros modelos de vivienda optimizados.</p>
-          </div>
-          <div className="bg-[#e1f7e3] rounded-lg p-8 shadow flex flex-col items-center" style={{ maxWidth: '480px', width: '100%' }}>
-            <Link href="/pricing" className="w-full" aria-label="Ir a Precios">
+              <span className="text-[#65b305] text-[32px] font-bold mb-3">Modelos</span>
+              <p className="text-[18px] text-[#034f1d] mb-2">Explorá y elegí entre nuestros modelos de vivienda optimizados.</p>
+            </div>
+          </Link>
+          <Link href="/pricing" className="w-full" aria-label="Ir a Precios">
+            <div className="bg-[#e1f7e3] rounded-lg p-8 shadow flex flex-col items-center transition hover:shadow-xl active:scale-[0.98] cursor-pointer" style={{ maxWidth: '480px', width: '100%' }}>
               <Image
                 src="/render5a.jpg"
                 alt="Precios"
                 width={426}
                 height={240}
-                className="rounded-lg shadow mb-6 object-contain w-full h-auto max-h-60 hover:scale-105 transition-transform duration-200 cursor-pointer"
+                className="rounded-lg shadow mb-6 object-contain w-full h-auto max-h-60 hover:scale-105 transition-transform duration-200"
                 style={{ background: '#fff' }}
               />
-            </Link>
-            <span className="text-[#65b305] text-[32px] font-bold mb-3">Precios</span>
-            <p className="text-[18px] text-[#034f1d] mb-2">Consultá los precios actualizados y calculá el costo de tu vivienda según tus necesidades.</p>
-          </div>
+              <span className="text-[#65b305] text-[32px] font-bold mb-3">Precios</span>
+              <p className="text-[18px] text-[#034f1d] mb-2">Consultá los precios actualizados y calculá el costo de tu vivienda según tus necesidades.</p>
+            </div>
+          </Link>
         </div>
         <div className="flex flex-col md:flex-row gap-8 w-full justify-center">
-          <div className="bg-[#e1f7e3] rounded-lg p-8 shadow flex flex-col items-center" style={{ maxWidth: '480px', width: '100%' }}>
-            <Link href="/turnkey" className="w-full" aria-label="Ir a Llave en mano">
-          <Image
+          <Link href="/turnkey" className="w-full" aria-label="Ir a Llave en mano">
+            <div className="bg-[#e1f7e3] rounded-lg p-8 shadow flex flex-col items-center transition hover:shadow-xl active:scale-[0.98] cursor-pointer" style={{ maxWidth: '480px', width: '100%' }}>
+              <Image
                 src="/render3a.jpg"
                 alt="Llave en mano"
                 width={426}
                 height={240}
-                className="rounded-lg shadow mb-6 object-contain w-full h-auto max-h-60 hover:scale-105 transition-transform duration-200 cursor-pointer"
+                className="rounded-lg shadow mb-6 object-contain w-full h-auto max-h-60 hover:scale-105 transition-transform duration-200"
                 style={{ background: '#fff' }}
               />
-            </Link>
-            <span className="text-[#65b305] text-[32px] font-bold mb-3">Llave en mano</span>
-            <p className="text-[18px] text-[#034f1d] mb-2">Descubrí nuestro servicio integral: nos encargamos de todo para que recibas tu casa lista para habitar.</p>
-          </div>
-          <div className="bg-[#e1f7e3] rounded-lg p-8 shadow flex flex-col items-center" style={{ maxWidth: '480px', width: '100%' }}>
-            <Link href="/designer-collaboration" className="w-full" aria-label="Agendar consulta">
-          <Image
+              <span className="text-[#65b305] text-[32px] font-bold mb-3">Llave en mano</span>
+              <p className="text-[18px] text-[#034f1d] mb-2">Descubrí nuestro servicio integral: nos encargamos de todo para que recibas tu casa lista para habitar.</p>
+            </div>
+          </Link>
+          <Link href="/designer-collaboration" className="w-full" aria-label="Agendar consulta">
+            <div className="bg-[#e1f7e3] rounded-lg p-8 shadow flex flex-col items-center transition hover:shadow-xl active:scale-[0.98] cursor-pointer" style={{ maxWidth: '480px', width: '100%' }}>
+              <Image
                 src="/agenda.png"
                 alt="Agenda para agendar consulta"
                 width={426}
                 height={240}
-                className="rounded-lg shadow mb-6 object-contain w-full h-auto max-h-60 hover:scale-105 transition-transform duration-200 cursor-pointer"
+                className="rounded-lg shadow mb-6 object-contain w-full h-auto max-h-60 hover:scale-105 transition-transform duration-200"
                 style={{ background: '#fff' }}
               />
-            </Link>
-            <span className="text-[#65b305] text-[32px] font-bold mb-3">Agendar consulta</span>
-            <p className="text-[18px] text-[#034f1d] mb-2">Coordiná una consulta con nuestro equipo para tu proyecto.</p>
-          </div>
+              <span className="text-[#65b305] text-[32px] font-bold mb-3">Agendar consulta</span>
+              <p className="text-[18px] text-[#034f1d] mb-2">Coordiná una consulta con nuestro equipo para tu proyecto.</p>
+            </div>
+          </Link>
+        </div>
+        <div className="flex flex-col md:flex-row gap-8 w-full justify-center">
+          <Link href="/conocer-el-sistema" className="w-full" aria-label="Conocer el sistema">
+            <div className="bg-[#e1f7e3] rounded-lg p-8 shadow flex flex-col items-center transition hover:shadow-xl active:scale-[0.98] cursor-pointer" style={{ maxWidth: '480px', width: '100%' }}>
+              <Image
+                src="/encofrado4.jpg"
+                alt="Conocer el sistema"
+                width={426}
+                height={240}
+                className="rounded-lg shadow mb-6 object-contain w-full h-auto max-h-60 hover:scale-105 transition-transform duration-200"
+                style={{ background: '#fff' }}
+              />
+              <span className="text-[#65b305] text-[32px] font-bold mb-3">Conocer el sistema</span>
+              <p className="text-[18px] text-[#034f1d] mb-2">Descubrí cómo funciona el sistema de encofrados de acero industrializados de Concreviv y sus ventajas.</p>
+            </div>
+          </Link>
+          <Link href="/quienes-somos" className="w-full" aria-label="Quiénes somos">
+            <div className="bg-[#e1f7e3] rounded-lg p-8 shadow flex flex-col items-center transition hover:shadow-xl active:scale-[0.98] cursor-pointer" style={{ maxWidth: '480px', width: '100%' }}>
+              <Image
+                src="/logo1.png"
+                alt="Quiénes somos"
+                width={200}
+                height={200}
+                className="rounded-full shadow mb-6 object-contain w-40 h-40 hover:scale-105 transition-transform duration-200 bg-white"
+                style={{ background: '#fff' }}
+              />
+              <span className="text-[#65b305] text-[32px] font-bold mb-3">Quiénes somos</span>
+              <p className="text-[18px] text-[#034f1d] mb-2">Conocé al equipo, la historia y los valores de Concreviv, y descubrí nuestras obras y misión.</p>
+            </div>
+          </Link>
         </div>
       </section>
     </div>

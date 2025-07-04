@@ -154,7 +154,8 @@ export default function ModeloDetallePage() {
             />
           ))}
         </div>
-        <div className="absolute bottom-8 left-8 bg-black/40 rounded-xl px-6 py-4 flex flex-col gap-2">
+        {/* DESKTOP: Nombre y botón superpuestos */}
+        <div className="absolute bottom-8 left-8 bg-black/40 rounded-xl px-6 py-4 flex flex-col gap-2 hidden md:flex">
           <h1 className="text-4xl font-extrabold text-white drop-shadow">{model.name}</h1>
           <div className="flex gap-4 mt-2">
             <span className="bg-[#e1f7e3] text-[#034f1d] px-4 py-1 rounded-full text-lg font-semibold flex items-center gap-2">
@@ -164,10 +165,19 @@ export default function ModeloDetallePage() {
               <FaBath /> {baños} Baños
             </span>
           </div>
+          <button
+            className="px-8 py-3 bg-gradient-to-r from-[#65b305] to-[#034f1d] text-white rounded-xl font-bold shadow-lg hover:from-[#034f1d] hover:to-[#65b305] transition text-lg"
+            onClick={() => setShowModal(true)}
+          >
+            Solicitar cotización
+          </button>
         </div>
-        {/* Botón de cotización abajo a la derecha, superpuesto */}
+      </div>
+      {/* MOBILE: Nombre y botón debajo del carrusel */}
+      <div className="block md:hidden w-full text-center mb-6">
+        <h1 className="text-2xl font-bold text-[#034f1d] mb-2">{model.name}</h1>
         <button
-          className="absolute bottom-8 right-8 px-8 py-3 bg-gradient-to-r from-[#65b305] to-[#034f1d] text-white rounded-xl font-bold shadow-lg hover:from-[#034f1d] hover:to-[#65b305] transition text-lg"
+          className="px-8 py-3 bg-gradient-to-r from-[#65b305] to-[#034f1d] text-white rounded-xl font-bold shadow-lg hover:from-[#034f1d] hover:to-[#65b305] transition text-lg"
           onClick={() => setShowModal(true)}
         >
           Solicitar cotización
@@ -175,35 +185,18 @@ export default function ModeloDetallePage() {
       </div>
 
       {/* VIDEO */}
-      {model.video && (
-        <div className="w-full max-w-4xl mb-8 rounded-xl overflow-hidden shadow-lg border border-[#65b305]/30 flex justify-center">
-          {model.video.includes('facebook.com') ? (
-            <iframe
-              src={model.video.replace('/videos/', '/video/embed?video_id=')}
-              width="900"
-              height="400"
-              style={{ border: 'none', overflow: 'hidden' }}
-              scrolling="no"
-              frameBorder="0"
-              allowFullScreen={true}
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-              className="w-full max-w-4xl rounded-xl"
-              title={`Video de ${model.name}`}
-            />
-          ) : (
-            <iframe
-              width="900"
-              height="400"
-              src={model.video}
-              title={`Video de ${model.name}`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full max-w-4xl rounded-xl"
-            />
-          )}
+      <div className="w-full max-w-4xl mb-8 rounded-xl overflow-hidden shadow-lg border border-[#65b305]/30">
+        <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+          <iframe
+            src="https://www.youtube.com/embed/t42oif2dH7k?list=PLOVnkXoCY7VQv8aGQqARpVPgWF7f-Ffh3"
+            title="Video de sistema de encofrado"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="absolute top-0 left-0 w-full h-full rounded-xl"
+          />
         </div>
-      )}
+      </div>
 
       {/* PLANO PRINCIPAL GRANDE */}
       {planoPrincipal && (
@@ -234,29 +227,26 @@ export default function ModeloDetallePage() {
         <p className="text-[#4b6358] mb-4 text-lg">{model.description}</p>
         {/* Tabla de superficies */}
         {model.superficies && (
-          <div className="overflow-x-auto mb-6">
+          <div className="w-full mb-6">
             <h3 className="text-xl font-semibold mb-2 text-[#034f1d]">Superficies</h3>
-            <table className="min-w-[400px] w-full border border-[#65b305] rounded-xl text-sm">
+            <table className="w-full border border-[#65b305] rounded-xl text-xs sm:text-sm">
               <thead className="bg-[#e1f7e3] text-[#034f1d]">
                 <tr>
-                  <th className="p-2 font-bold"> </th>
-                  <th className="p-2 font-bold">Cubierta (m²)</th>
-                  <th className="p-2 font-bold">Semicubierta (m²)</th>
-                  <th className="p-2 font-bold">Descubierta (m²)</th>
+                  <th className="p-2 font-bold whitespace-nowrap"> </th>
+                  <th className="p-2 font-bold whitespace-nowrap">Cubierta (m²)</th>
+                  <th className="p-2 font-bold whitespace-nowrap">Semicubierta (m²)</th>
                 </tr>
               </thead>
               <tbody className="text-center">
                 <tr>
-                  <td className="p-2">Inicial</td>
-                  <td className="p-2">{model.superficies.cubierta}</td>
-                  <td className="p-2">{model.superficies.semicubierta}</td>
-                  <td className="p-2">{model.superficies.descubierta}</td>
+                  <td className="p-2 whitespace-nowrap">Inicial</td>
+                  <td className="p-2 whitespace-nowrap">{model.superficies.cubierta}</td>
+                  <td className="p-2 whitespace-nowrap">{model.superficies.semicubierta}</td>
                 </tr>
                 <tr className="font-semibold bg-[#f6fef7]">
-                  <td className="p-2">Total</td>
-                  <td className="p-2">{model.superficies.total_cubierta}</td>
-                  <td className="p-2">{model.superficies.total_semicubierta}</td>
-                  <td className="p-2">{model.superficies.total_descubierta}</td>
+                  <td className="p-2 whitespace-nowrap">Total</td>
+                  <td className="p-2 whitespace-nowrap">{model.superficies.total_cubierta}</td>
+                  <td className="p-2 whitespace-nowrap">{model.superficies.total_semicubierta}</td>
                 </tr>
               </tbody>
             </table>
