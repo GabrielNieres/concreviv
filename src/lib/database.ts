@@ -16,6 +16,10 @@ export interface Lead {
   comment?: string;
   lead_type?: string;
   created_at?: string;
+  package_type?: string;
+  features?: string;
+  materials?: string;
+  extra_info?: string;
 }
 
 export const createLead = async (lead: Omit<Lead, 'id' | 'created_at'>) => {

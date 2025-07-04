@@ -52,6 +52,7 @@ export default function DesignerCollaborationPage() {
         phone: form.phone,
         zone: form.zone,
         comment: form.comment,
+        lead_type: 'consulta',
       });
 
       if (error) {
@@ -119,18 +120,18 @@ export default function DesignerCollaborationPage() {
                 className="w-full border border-[#e1f7e3] rounded-lg p-2 focus:ring-2 focus:ring-[#65b305] focus:border-[#65b305] text-[#034f1d] bg-[#F9FAFB]"
               />
             </div>
-            <div className="flex-1">
-              <label className="block mb-1 font-medium text-[#034f1d]" htmlFor="email">Correo electrónico</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                value={form.email}
-                onChange={handleChange}
-                className="w-full border border-[#e1f7e3] rounded-lg p-2 focus:ring-2 focus:ring-[#65b305] focus:border-[#65b305] text-[#034f1d] bg-[#F9FAFB]"
-              />
-            </div>
+          </div>
+          <div>
+            <label className="block mb-1 font-medium text-[#034f1d]" htmlFor="email">Correo electrónico</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              value={form.email}
+              onChange={handleChange}
+              className="w-full border border-[#e1f7e3] rounded-lg p-2 focus:ring-2 focus:ring-[#65b305] focus:border-[#65b305] text-[#034f1d] bg-[#F9FAFB]"
+            />
           </div>
           <div>
             <label className="block mb-1 font-medium text-[#034f1d]" htmlFor="phone">Teléfono</label>

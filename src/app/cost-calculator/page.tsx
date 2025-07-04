@@ -137,7 +137,7 @@ export default function CostCalculatorPage() {
           </ul>
           <div className="flex justify-between items-center text-xl font-bold text-[#034f1d]">
             <span>Total estimado:</span>
-            <span className="text-3xl text-[#65b305]">${total.toLocaleString()}</span>
+            <span className="text-3xl text-[#65b305]">${total.toLocaleString('es-AR')}</span>
           </div>
         </div>
         <div className="mt-8 text-center text-[#034f1d] text-sm">

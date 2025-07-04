@@ -166,7 +166,7 @@ export default function TestAuthPage() {
                     <div className="space-y-2 text-sm">
                       <div><span className="font-medium">Nombre:</span> {profile.full_name || 'N/A'}</div>
                       <div><span className="font-medium">Email:</span> {profile.email}</div>
-                      <div><span className="font-medium">Creado:</span> {new Date(profile.created_at).toLocaleDateString()}</div>
+                      <div><span className="font-medium">Creado:</span> {new Date(profile.created_at).toLocaleDateString('es-AR')}</div>
                     </div>
                   </div>
                 ) : (

@@ -1,4 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import { createLead } from "../../lib/database";
+import { supabase } from "../../supabaseClient";
 
 const TURNKEY_PACKAGES = [
   {
@@ -20,7 +24,7 @@ const TURNKEY_PACKAGES = [
       "Puertas y ventanas",
       "Grifería estándar",
     ],
-    image: "/public/globe.svg",
+    image: "/render3a.jpg",
   },
   {
     id: 2,
@@ -41,7 +45,7 @@ const TURNKEY_PACKAGES = [
       "Grifería de diseño",
       "Electrodomésticos de alta gama",
     ],
-    image: "/public/window.svg",
+    image: "/header.jpg",
   },
   {
     id: 3,
@@ -62,7 +66,7 @@ const TURNKEY_PACKAGES = [
       "Acabados personalizados",
       "Mobiliario incluido",
     ],
-    image: "/public/next.svg",
+    image: "/agenda.png",
   },
 ];
 
@@ -75,7 +79,71 @@ const QUALITY_STANDARDS = [
   "Cumplimiento de normas de construcción",
 ];
 
+const ZONES = ["Mar del Plata", "Chapadmalal", "Santa Clara", "Balcarce", "Otros"];
+
 export default function TurnkeyPage() {
+  const [showModal, setShowModal] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    zone: ZONES[0],
+    comment: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [selectedPackage, setSelectedPackage] = useState<typeof TURNKEY_PACKAGES[0] | null>(null);
+
+  React.useEffect(() => {
+    const getSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUser(session?.user ?? null);
+      setLoading(false);
+    };
+    getSession();
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedPackage) return;
+    try {
+      const { error } = await createLead({
+        user_id: user?.id || null,
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        zone: form.zone,
+        comment: form.comment,
+        lead_type: 'turnkey',
+        package_type: selectedPackage.name,
+        extra_info: JSON.stringify({
+          features: selectedPackage.features,
+          materials: selectedPackage.materials,
+        }),
+      });
+      if (error) {
+        alert('Error al enviar los datos. Por favor, intenta de nuevo.');
+        return;
+      }
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 2500);
+      setForm({ name: "", email: "", phone: "", zone: ZONES[0], comment: "" });
+      setShowModal(false);
+    } catch (error) {
+      alert('Error al enviar los datos. Por favor, intenta de nuevo.');
+    }
+  };
+
   return (
     <main className="min-h-screen bg-[#F9FAFB]">
       <div className="max-w-7xl mx-auto px-8 py-12">
@@ -91,11 +159,11 @@ export default function TurnkeyPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           {TURNKEY_PACKAGES.map((pkg) => (
             <div key={pkg.id} className="bg-[#e1f7e3] rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow border border-[#65b305]/30">
-              <div className="h-48 bg-white flex items-center justify-center">
+              <div className="h-48 bg-white overflow-hidden">
                 <img
                   src={pkg.image}
                   alt={pkg.name}
-                  className="w-32 h-32 object-contain"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <div className="p-6">
@@ -127,7 +195,11 @@ export default function TurnkeyPage() {
                   </ul>
                 </div>
 
-                <button className="w-full bg-[#65b305] text-white py-3 rounded-lg font-semibold hover:bg-[#034f1d] transition">
+                <button
+                  className="w-full bg-[#65b305] text-white py-3 rounded-lg font-semibold hover:bg-[#034f1d] transition"
+                  onClick={() => { setSelectedPackage(pkg); setShowModal(true); }}
+                  type="button"
+                >
                   Pedir cotización
                 </button>
               </div>
@@ -172,6 +244,55 @@ export default function TurnkeyPage() {
           </div>
         </div>
       </div>
+
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+          <div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-lg relative">
+            <button onClick={() => setShowModal(false)} className="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-2xl">✕</button>
+            <h2 className="text-2xl font-bold mb-4 text-[#034f1d] text-center">Solicitar cotización llave en mano</h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="flex gap-4">
+                <div className="flex-1">
+                  <label className="block mb-1 font-medium text-[#034f1d]" htmlFor="name">Nombre y apellido</label>
+                  <input id="name" name="name" type="text" required value={form.name} onChange={handleChange} className="w-full border border-[#e1f7e3] rounded-lg p-2 focus:ring-2 focus:ring-[#65b305] focus:border-[#65b305] text-[#034f1d] bg-[#F9FAFB]" />
+                </div>
+              </div>
+              <div>
+                <label className="block mb-1 font-medium text-[#034f1d]" htmlFor="email">Correo electrónico</label>
+                <input id="email" name="email" type="email" required value={form.email} onChange={handleChange} className="w-full border border-[#e1f7e3] rounded-lg p-2 focus:ring-2 focus:ring-[#65b305] focus:border-[#65b305] text-[#034f1d] bg-[#F9FAFB]" />
+              </div>
+              <div className="flex gap-4">
+                <div className="flex-1">
+                  <label className="block mb-1 font-medium text-[#034f1d]" htmlFor="phone">Teléfono</label>
+                  <input id="phone" name="phone" type="tel" required value={form.phone} onChange={handleChange} className="w-full border border-[#e1f7e3] rounded-lg p-2 focus:ring-2 focus:ring-[#65b305] focus:border-[#65b305] text-[#034f1d] bg-[#F9FAFB]" />
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex-1">
+                  <label className="block mb-1 font-medium text-[#034f1d]" htmlFor="zone">Zona</label>
+                  <select id="zone" name="zone" value={form.zone} onChange={handleChange} className="w-full border border-[#e1f7e3] rounded-lg p-2 bg-[#F9FAFB] text-[#034f1d] focus:border-[#65b305] focus:ring-2 focus:ring-[#65b305]">
+                    {ZONES.map((zone) => (
+                      <option key={zone}>{zone}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label className="block mb-1 font-medium text-[#034f1d]" htmlFor="comment">Comentario</label>
+                <textarea id="comment" name="comment" value={form.comment} onChange={handleChange} rows={3} className="w-full border border-[#e1f7e3] rounded-lg p-2 focus:ring-2 focus:ring-[#65b305] focus:border-[#65b305] text-[#034f1d] bg-[#F9FAFB]" placeholder="Agregá detalles, dudas o comentarios sobre tu proyecto..." />
+              </div>
+              <div className="flex justify-center">
+                <button type="submit" className="px-8 py-3 bg-[#65b305] text-white rounded-lg font-semibold shadow hover:bg-[#034f1d] transition">Enviar cotización</button>
+              </div>
+              {submitted && (
+                <div className="mt-6 text-center">
+                  <span className="inline-block bg-[#e1f7e3] text-[#034f1d] px-4 py-2 rounded-lg font-medium shadow border border-[#65b305]">¡Cotización enviada! Pronto nos pondremos en contacto con vos.</span>
+                </div>
+              )}
+            </form>
+          </div>
+        </div>
+      )}
     </main>
   );
 } 
