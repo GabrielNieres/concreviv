@@ -81,14 +81,14 @@ export default function ModeloDetallePage() {
         zone: form.zone,
         comment: form.comment,
         lead_type: 'pre-established-models',
-        package_type: model.name,
+        package_type: model?.name ?? "",
         extra_info: JSON.stringify({
-          model_id: model.id,
-          model_name: model.name,
-          superficies: model.superficies,
-          ambientes: model.ambientes,
-          features: model.features,
-          description: model.description,
+          model_id: model?.id ?? "",
+          model_name: model?.name ?? "",
+          superficies: model?.superficies ?? null,
+          ambientes: model?.ambientes ?? null,
+          features: model?.features ?? null,
+          description: model?.description ?? "",
         }),
       });
       if (error) {
